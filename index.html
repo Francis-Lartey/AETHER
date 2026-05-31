@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aether Shop - Premium Digital Lifestyle & Workspace Boutique</title>
+  <link rel="stylesheet" href="styles.css">
+  <meta name="description" content="A premium, design-focused e-commerce digital boutique specializing in high-end ambient electronics and minimalist desktop accessories.">
+</head>
+<body>
+
+  <!-- Dynamic Ambient Orbs -->
+  <div class="ambient-canvas" aria-hidden="true">
+    <div class="ambient-orb orb-1"></div>
+    <div class="ambient-orb orb-2"></div>
+    <div class="ambient-orb orb-3"></div>
+  </div>
+
+  <!-- Floating Glassmorphic Header Navigation -->
+  <nav class="nav-header" id="nav-header">
+    <a href="#" class="logo" id="nav-logo">
+      AETHER
+      <span class="logo-dot"></span>
+    </a>
+
+    <!-- Nav Search Box -->
+    <div class="nav-search-box">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="11" cy="11" r="8"></circle>
+        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+      </svg>
+      <input type="text" class="nav-search-input" id="nav-search-input" placeholder="Search catalog..." aria-label="Search Catalog Input">
+    </div>
+
+    <!-- Nav Suite Actions -->
+    <div class="nav-actions">
+      <button class="cart-toggle-btn" id="open-cart-btn" aria-label="Open Shopping Cart Drawer">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="9" cy="21" r="1"></circle>
+          <circle cx="20" cy="21" r="1"></circle>
+          <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+        </svg>
+        <span>Cart</span>
+        <span class="cart-badge" id="nav-cart-badge">0</span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Storefront Wrapper Grid -->
+  <main class="storefront-wrapper">
+    
+    <!-- Filter Tabs Row -->
+    <section class="filter-tabs-row" aria-label="Catalog Filtering & Controls">
+      <ul class="filter-tabs" id="catalog-filter-tabs" role="tablist">
+        <li role="presentation">
+          <button class="filter-tab-btn active" data-category="all" role="tab" aria-selected="true" id="tab-all">All Objects</button>
+        </li>
+        <li role="presentation">
+          <button class="filter-tab-btn" data-category="audio" role="tab" aria-selected="false" id="tab-audio">Acoustic Audio</button>
+        </li>
+        <li role="presentation">
+          <button class="filter-tab-btn" data-category="workspace" role="tab" aria-selected="false" id="tab-workspace">Workspace Gear</button>
+        </li>
+        <li role="presentation">
+          <button class="filter-tab-btn" data-category="wearables" role="tab" aria-selected="false" id="tab-wearables">Wearables</button>
+        </li>
+      </ul>
+      <span class="filter-results-label" id="results-counter">Displaying 6 premium products</span>
+    </section>
+
+    <!-- Catalog Board Grid -->
+    <section class="products-grid" id="catalog-grid" aria-label="Aether Storefront Products Board">
+      <!-- Injected dynamically by JS -->
+    </section>
+
+  </main>
+
+  <!-- Sliding Shopping Cart Drawer Overlay Panel -->
+  <div class="cart-drawer-overlay" id="cart-drawer-overlay">
+    <aside class="cart-drawer" id="cart-drawer-panel" role="dialog" aria-modal="true" aria-label="Your Shopping Cart Drawer">
+      
+      <!-- Cart Header -->
+      <div class="cart-header">
+        <h2 class="cart-title">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="9" cy="21" r="1"></circle>
+            <circle cx="20" cy="21" r="1"></circle>
+            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+          </svg>
+          Selected Objects
+        </h2>
+        <button class="cart-close-btn" id="close-cart-btn" aria-label="Close Shopping Cart">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Scrolling Cart Items List -->
+      <div class="cart-items-deck" id="cart-items-deck">
+        <!-- Injected dynamically by JS -->
+      </div>
+
+      <!-- Sticky Cost Summary Breakdown -->
+      <div class="cart-footer">
+        <div class="cart-cost-grid">
+          <div class="cost-row">
+            <span>Subtotal</span>
+            <span id="summary-subtotal">$0.00</span>
+          </div>
+          <div class="cost-row">
+            <span>Shipping</span>
+            <span id="summary-shipping">Calculated next</span>
+          </div>
+          <div class="cost-row">
+            <span>Est. Tax</span>
+            <span id="summary-tax">$0.00</span>
+          </div>
+          <div class="cost-row grand-total">
+            <span>Total Cost</span>
+            <span class="cost-total-amount" id="summary-total">$0.00</span>
+          </div>
+        </div>
+        
+        <button class="btn-primary" id="checkout-trigger-btn" disabled>
+          Proceed to Checkout
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </button>
+      </div>
+
+    </aside>
+  </div>
+
+  <!-- Product Detail Quick-View Modal -->
+  <dialog class="dialog-overlay" id="quickview-modal" style="display: none;">
+    <div class="dialog-panel" id="quickview-panel" role="document">
+      <button class="dialog-close-btn" id="close-quickview-btn" aria-label="Close details modal">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+
+      <!-- Left Visual column -->
+      <div class="qv-showcase">
+        <div class="qv-showcase-svg" id="qv-graphic-container">
+          <!-- Injected SVG product visual -->
+        </div>
+      </div>
+
+      <!-- Right details column -->
+      <div class="qv-content">
+        <span class="qv-category-tag" id="qv-category">AUDIO</span>
+        <h3 class="qv-name" id="qv-name">Holographic Speaker</h3>
+        <span class="qv-price" id="qv-price">$299</span>
+        <p class="qv-desc" id="qv-desc">Detailed design description showing how premium and unique the workspace hardware is.</p>
+        
+        <!-- Swatches -->
+        <div class="qv-swatches-box">
+          <span class="qv-swatches-title">Color Selection</span>
+          <div class="qv-swatches" id="qv-swatches-deck">
+            <!-- Swatches buttons injected dynamically -->
+          </div>
+        </div>
+
+        <div class="qv-cta-row">
+          <button class="btn-primary" id="qv-add-to-cart" style="flex-grow: 1;">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- Multi-step Checkout Terminal Panel -->
+  <dialog class="dialog-overlay" id="checkout-modal" style="display: none;">
+    <div class="checkout-panel" id="checkout-panel-wizard" role="document">
+      <button class="dialog-close-btn" id="close-checkout-btn" aria-label="Close Checkout Terminal">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+
+      <!-- Connecting Progress Stepper -->
+      <div class="checkout-stepper">
+        <div class="stepper-line"></div>
+        <div class="stepper-line-progress" id="wizard-progress-bar"></div>
+        <div class="step-node active" id="step-node-1" aria-label="Step 1: Shipping Address">1</div>
+        <div class="step-node" id="step-node-2" aria-label="Step 2: Billing & Credit Card">2</div>
+        <div class="step-node" id="step-node-3" aria-label="Step 3: Success Receipt">3</div>
+      </div>
+
+      <!-- STEP 1 SHEET: SHIPPING -->
+      <div class="checkout-sheet active" id="sheet-shipping">
+        <h3 class="checkout-sheet-title">Shipping Credentials</h3>
+        <form id="form-shipping" novalidate>
+          <div class="form-group" id="group-chk-name">
+            <label for="input-chk-name" class="form-label">Full Name</label>
+            <input type="text" class="form-input" id="input-chk-name" placeholder="Sarah Jenkins" required>
+            <span class="error-tip">Please enter your billing name.</span>
+          </div>
+
+          <div class="form-group" id="group-chk-email" style="margin-top: 1rem;">
+            <label for="input-chk-email" class="form-label">Email Address</label>
+            <input type="email" class="form-input" id="input-chk-email" placeholder="sarah@aether.com" required>
+            <span class="error-tip">Please enter a valid shipping email.</span>
+          </div>
+
+          <div class="form-group" id="group-chk-address" style="margin-top: 1rem;">
+            <label for="input-chk-address" class="form-label">Street Address</label>
+            <input type="text" class="form-input" id="input-chk-address" placeholder="582 Folsom St, Suite 10" required>
+            <span class="error-tip">Please enter your street address.</span>
+          </div>
+
+          <div class="form-row" style="margin-top: 1rem;">
+            <div class="form-group" id="group-chk-city">
+              <label for="input-chk-city" class="form-label">City</label>
+              <input type="text" class="form-input" id="input-chk-city" placeholder="San Francisco" required>
+              <span class="error-tip">Please enter your city.</span>
+            </div>
+            <div class="form-group" id="group-chk-zip">
+              <label for="input-chk-zip" class="form-label">Zip / Postal Code</label>
+              <input type="text" class="form-input" id="input-chk-zip" placeholder="94107" required>
+              <span class="error-tip">Please enter a zip code.</span>
+            </div>
+          </div>
+
+          <button type="submit" class="btn-primary" style="margin-top: 2rem;">Continue to Payment</button>
+        </form>
+      </div>
+
+      <!-- STEP 2 SHEET: CREDIT CARD & PAYMENT -->
+      <div class="checkout-sheet" id="sheet-payment">
+        <h3 class="checkout-sheet-title">Secure Billing</h3>
+        <form id="form-payment" novalidate>
+          <div class="form-group" id="group-pay-name">
+            <label for="input-pay-name" class="form-label">Cardholder Name</label>
+            <input type="text" class="form-input" id="input-pay-name" placeholder="SARAH JENKINS" required>
+            <span class="error-tip">Specify name printed on the credit card.</span>
+          </div>
+
+          <div class="form-group" id="group-pay-card" style="margin-top: 1rem;">
+            <label for="input-pay-card" class="form-label">Credit Card Number</label>
+            <input type="text" class="form-input" id="input-pay-card" placeholder="4111 2222 3333 4444" maxlength="19" required>
+            <span class="error-tip" id="error-card-luhn">Please enter a valid credit card (Luhn validation).</span>
+          </div>
+
+          <div class="form-row" style="margin-top: 1rem;">
+            <div class="form-group" id="group-pay-expiry">
+              <label for="input-pay-expiry" class="form-label">Expiration Date</label>
+              <input type="text" class="form-input" id="input-pay-expiry" placeholder="MM/YY" maxlength="5" required>
+              <span class="error-tip">Enter expiration MM/YY (future date).</span>
+            </div>
+            <div class="form-group" id="group-pay-cvv">
+              <label for="input-pay-cvv" class="form-label">CVV / Secure Code</label>
+              <input type="text" class="form-input" id="input-pay-cvv" placeholder="123" maxlength="4" required>
+              <span class="error-tip">CVV must be 3 or 4 digits.</span>
+            </div>
+          </div>
+
+          <!-- Checkout billing breakdown row -->
+          <div class="check-card" style="margin-top: 1.5rem; justify-content: space-between; border-color: var(--border-cyan); padding: 1rem 1.5rem;" aria-hidden="true">
+            <span style="font-size: 0.85rem; color:var(--text-muted); font-weight:600;">Total Charged Amount:</span>
+            <span style="font-family: 'Syne', sans-serif; font-size:1.15rem; font-weight:700; color:var(--accent-gold);" id="checkout-charge-total">$0.00</span>
+          </div>
+
+          <div class="form-row" style="margin-top: 2rem;">
+            <button type="button" class="btn-secondary" id="payment-back-btn">Go Back</button>
+            <button type="submit" class="btn-primary" style="background: linear-gradient(135deg, var(--accent-purple), #7c3aed); border: none; color: #fff; box-shadow: 0 0 20px var(--accent-purple-glow);">
+              Submit Order
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <!-- STEP 3 SHEET: RECEIPT SUCCESS -->
+      <div class="checkout-sheet" id="sheet-success">
+        <div style="text-align: center; display: flex; flex-direction: column; align-items: center; gap: 1rem;">
+          <div class="success-icon-ring" style="width: 70px; height: 70px; border-radius: 50%; border: 3px solid var(--border-cyan); display: flex; align-items: center; justify-content: center; color: var(--accent-cyan); box-shadow: 0 0 20px var(--accent-cyan-glow); margin-bottom: 0.5rem;" aria-hidden="true">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+          </div>
+          <h3 class="checkout-sheet-title" style="margin-bottom: 0;">Purchase Certified</h3>
+          <p style="font-size:0.85rem; color:var(--text-muted); max-width:340px; margin-bottom: 1.5rem;">Your order transaction has been authorized. A receipt ledger and copy details are generated below.</p>
+        </div>
+
+        <!-- Styled Receipt -->
+        <div class="receipt-card">
+          <div class="receipt-header">
+            <span class="receipt-id" id="receipt-order-id">ORD-9351A29</span>
+            <span class="receipt-date" id="receipt-date-display">Monday, May 25, 2026</span>
+          </div>
+
+          <!-- Items list in receipt -->
+          <div style="display:flex; flex-direction:column; gap:0.6rem;" id="receipt-items-deck">
+            <!-- Dynamic Receipt items injected -->
+          </div>
+
+          <!-- Cost summary in receipt -->
+          <div class="receipt-totals">
+            <div class="receipt-item-line">
+              <span>Subtotal</span>
+              <span id="receipt-subtotal">$0.00</span>
+            </div>
+            <div class="receipt-item-line">
+              <span>Shipping cost</span>
+              <span id="receipt-shipping">$0.00</span>
+            </div>
+            <div class="receipt-item-line">
+              <span>Estimated Sales Tax</span>
+              <span id="receipt-tax">$0.00</span>
+            </div>
+            <div class="receipt-grand-total">
+              <span>Charged Total</span>
+              <span id="receipt-total" style="color: var(--accent-gold);">$0.00</span>
+            </div>
+          </div>
+        </div>
+
+        <button class="btn-primary" id="success-reset-btn" style="margin-top: 1.5rem; width: 100%;">
+          Complete Shopping Flow
+        </button>
+      </div>
+
+    </div>
+  </dialog>
+
+  <!-- Styled Footer -->
+  <footer class="footer-wrap">
+    <div class="container">
+      <a href="#" class="footer-logo">
+        AETHER SHOP
+        <span class="logo-dot"></span>
+      </a>
+      <p>&copy; 2026 Aether Commerce Corp. Design excellence, certified security.</p>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
